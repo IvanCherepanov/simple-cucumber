@@ -1,84 +1,15 @@
 package hellocucumber;
 
-import io.cucumber.java.en.*;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.ru.Дано;
-import io.cucumber.java.ru.Когда;
-import io.cucumber.java.ru.Тогда;
-
+import io.cucumber.java.ru.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class IsItFriday {
-    static String isItFriday(String today) {
-        return "Friday".equals(today) ? "TGIF" : "Nope";
-    }
-}
-
-
-class Calculator {
-    static int add(int a, int b) {
-        return a + b;
-    }
-}
-
-
-public class StepDefinitions {
-    private String today;
-    private String actualAnswer;
+public class PaymentSteps {
     private double cardBalance;
     private double productPrice;
     private String paymentResultMessage;
 
-    private int firstNumber;
-    private int secondNumber;
-    private int result;
-
-    @Дано("первое число равно {int}")
-    public void первое_число_равно(int number) {
-        this.firstNumber = number;
-    }
-
-    @Дано("второе число равно {int}")
-    public void второе_число_равно(int number) {
-        this.secondNumber = number;
-    }
-
-    @Когда("пользователь выполняет операцию сложения")
-    public void пользователь_выполняет_операцию_сложения() {
-        this.result = Calculator.add(firstNumber, secondNumber);
-    }
-
-    @Тогда("результат равен {int}")
-    public void результат_равен(int expectedResult) {
-        assertThat(result).isEqualTo(expectedResult);
-    }
-
-
-    @Given("today is Sunday")
-    public void today_is_Sunday() {
-        today = "Sunday";
-    }
-
-    @When("I ask whether it's Friday yet")
-    public void i_ask_whether_it_s_Friday_yet() {
-        actualAnswer = IsItFriday.isItFriday(today);
-    }
-
-    @Then("I should be told {string}")
-    public void i_should_be_told(String expectedAnswer) {
-        assertThat(actualAnswer).isEqualTo(expectedAnswer);
-    }
-
-    @Given("today is Friday")
-    public void today_is_Friday() {
-        today = "Friday";
-    }
-
     @Дано("пользователь находится на странице оформления заказа")
     public void пользователь_находится_на_странице_оформления_заказа() {
-        // Здесь можно добавить логику перехода на страницу, но для примера просто логируем
         System.out.println("Пользователь на странице оформления заказа");
     }
 
